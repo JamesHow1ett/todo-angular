@@ -2,15 +2,17 @@ import {
   Component, EventEmitter, Input, OnChanges, Output, SimpleChanges,
 } from '@angular/core';
 
+type ButtonColor = 'primary' | 'black' | 'silver' | 'white' | 'red';
+type ButtonSize = 'sm' | 'md' | 'lg';
 @Component({
   selector: 'app-a-btn',
   templateUrl: './a-btn.component.html',
   styleUrls: ['./a-btn.component.scss'],
 })
 export class ABtnComponent implements OnChanges {
-  @Input() color: string = '';
+  @Input() color: ButtonColor = 'primary';
 
-  @Input() size: string = '';
+  @Input() size: ButtonSize = 'md';
 
   @Output() clickBtn = new EventEmitter<Event>();
 
@@ -18,18 +20,16 @@ export class ABtnComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const { color, size } = changes;
-    this.computedClasses = ABtnComponent.initClasses({
+    this.computedClasses = ABtnComponent.getClasses({
       color: color.currentValue,
       size: size.currentValue,
     });
   }
 
-  static initClasses({ color, size }: Record<string, string>): Record<string, boolean> {
-    return {
-      [`btn-color--${color}`]: true,
-      [`btn-size--${size}`]: true,
-    };
-  }
+  static getClasses = ({ color, size }: Record<string, string>): Record<string, boolean> => ({
+    [`btn-color--${color}`]: true,
+    [`btn-size--${size}`]: true,
+  });
 
   handleClick(event: Event) {
     this.clickBtn.emit(event);

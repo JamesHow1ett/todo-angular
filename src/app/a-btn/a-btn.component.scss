@@ -1,0 +1,46 @@
+.a-btn {
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+  border-color: transparent;
+  border-width: 1px;
+  box-shadow: 0px 2px 6px rgba(127, 177, 243, 0.4);
+  cursor: pointer;
+
+  &.btn-color--primary {
+    background-color: #2F80ED;
+  }
+
+  &.btn-color--black {
+    background-color: #333333;
+  }
+
+  &.btn-color--silver {
+    background-color: #BDBDBD;
+  }
+
+  &.btn-color--red {
+    background-color: #EB5757;
+  }
+
+  &.btn-color--white {
+    background-color: #FFFFFF;
+  }
+
+  &.btn-size--sm {
+    border-radius: 2px;
+    padding: 8px 15px;
+  }
+
+  &.btn-size--md {
+    border-radius: 4px;
+    padding: 16px 30px;
+  }
+
+  &.btn-size--lg {
+    border-radius: 12px;
+    padding: 20px 40px;
+  }
+}
