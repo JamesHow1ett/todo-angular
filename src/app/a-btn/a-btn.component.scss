@@ -1,6 +1,6 @@
 .a-btn {
   color: #FFFFFF;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   column-gap: 5px;
@@ -36,11 +36,11 @@
 
   &.btn-size--md {
     border-radius: 4px;
-    padding: 16px 30px;
+    padding: 12px 30px;
   }
 
   &.btn-size--lg {
     border-radius: 12px;
-    padding: 20px 40px;
+    padding: 19px 40px;
   }
 }

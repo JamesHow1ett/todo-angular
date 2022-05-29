@@ -11,3 +11,5 @@ export interface TodoItem {
   createdAt?: number
   priority?: PriorityStatus
 }
+
+export type NewTodo = Omit<TodoItem, 'id'>;

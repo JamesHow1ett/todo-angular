@@ -1,0 +1,19 @@
+<div class="create-todo">
+  <div class="create-todo__input">
+    <input 
+      [value]="todoValue"
+      type="text"
+      placeholder="add details"
+      (input)="handleBlur($event)"
+    >
+  </div>
+  <div class="create-todo__btn">
+    <app-a-btn
+      color="primary"
+      size="lg"
+      (clickBtn)="createNewTodo()"
+    >
+      Add
+    </app-a-btn>
+  </div>
+</div>

@@ -1,14 +1,17 @@
 <div class="todo-item">
-  <div class="todo-item__wrapper">
-    <span class="todo-item__checkbox" (click)="toogleCompleted()">
+  <div class="todo-item__wrapper" (click)="toogleCompleted()">
+    <span class="todo-item__checkbox">
       <input *ngIf="item.completed" type="checkbox" checked />
       <input *ngIf="!item.completed" type="checkbox" />
     </span>
-    <span class="todo-item__title">
+    <span class="todo-item__title" [class]="{ done: item.completed }">
       {{ item.title }}
     </span>
     <span>
       created at: {{ formattedDate(item.createdAt) }}
     </span>
+  </div>
+  <div *ngIf="isCompletedFilter" class="todo-item__icon">
+    <fa-icon [icon]="icon"></fa-icon>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import StoreService from '../utils/storage';
 
-import { TodoItem } from '../types/TodoItem';
+import { TodoItem, NewTodo } from '../types/TodoItem';
 import { FilterInput } from '../types/Filter';
 
 const SAFE_ID_PREFIX = 'todo-item-id--';
@@ -20,6 +20,8 @@ export class AppComponent {
 
   selectedFilter: FilterInput = 'all';
 
+  isCompletedFilter = false;
+
   toggleCompleted(item: TodoItem) {
     const updatedTodos: Array<TodoItem> = [...this.todos].map((todo) => (todo.id === item.id
       ? {
@@ -32,7 +34,7 @@ export class AppComponent {
     this.todos = updatedTodos;
   }
 
-  addNewTodo(item: TodoItem) {
+  addNewTodo(item: NewTodo) {
     const lastIdPrefix = this.todos.length + 1;
     const updatedTodos: Array<TodoItem> = [...this.todos, { ...item, id: safeId(lastIdPrefix) }];
 
@@ -41,7 +43,11 @@ export class AppComponent {
   }
 
   updateFilter(filter: FilterInput): void {
-    console.log('changes');
     this.selectedFilter = filter;
+    this.isCompletedFilter = filter === 'completed';
+  }
+
+  deleteTodos() {
+    this.todos = [];
   }
 }

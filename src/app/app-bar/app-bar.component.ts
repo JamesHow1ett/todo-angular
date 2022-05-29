@@ -10,6 +10,10 @@ import { FilterInput, Filter } from '../../types/Filter';
   styleUrls: ['./app-bar.component.scss'],
 })
 export class AppBarComponent {
+  @Input() selectedFilter: FilterInput = 'all';
+
+  @Output() updateFilter = new EventEmitter<FilterInput>();
+
   filters: Array<Filter> = [
     {
       title: 'All',
@@ -28,12 +32,4 @@ export class AppBarComponent {
   selectFilter(filter: FilterInput) {
     this.updateFilter.emit(filter);
   }
-
-  createNewTodo() {
-    console.log('click');
-  }
-
-  @Input() selectedFilter: FilterInput = 'all';
-
-  @Output() updateFilter = new EventEmitter<FilterInput>();
 }

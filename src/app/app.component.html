@@ -2,6 +2,13 @@
   <div class="todo-app">
     <app-app-bar [selectedFilter]="selectedFilter" (updateFilter)="updateFilter($event)"></app-app-bar>
 
-    <app-todo-list (toggle)="toggleCompleted($event)"></app-todo-list>
+    <app-create-todo *ngIf="!isCompletedFilter" (addTodo)="addNewTodo($event)"></app-create-todo>
+
+    <app-todo-list
+      [todos]="todos"
+      [selectedFilter]="selectedFilter"
+      (toggle)="toggleCompleted($event)"
+      (deleteAll)="deleteTodos()"
+      ></app-todo-list>
   </div>
 </div>

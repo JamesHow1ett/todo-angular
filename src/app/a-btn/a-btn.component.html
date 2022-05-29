@@ -1,3 +1,4 @@
 <button class="a-btn" [class]="computedClasses" (click)="handleClick($event)">
+  <ng-content select="[appendIcon]"></ng-content>
   <ng-content></ng-content>
 </button>

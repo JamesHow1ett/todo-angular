@@ -1,9 +1,21 @@
-<div>
-  <ul>
+<div class="todo-list">
+  <ul class="todo-list__list">
     <app-list-item
       *ngFor="let todo of todos"
       [item]="todo"
+      [isCompletedFilter]="isCompletedFilter"
       (toogle)="toggleCompleted($event)"
     ></app-list-item>
   </ul>
+  <div class="todo-list__action">
+    <app-a-btn
+      *ngIf="isCompletedFilter"
+      color="red"
+      size="md"
+      (clickBtn)="handleDeleteAll()"
+    >
+      <fa-icon [icon]="icon" appendIcon></fa-icon>
+      Delete All
+    </app-a-btn>
+  </div>
 </div>

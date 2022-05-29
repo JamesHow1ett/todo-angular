@@ -1,0 +1,22 @@
+.todo-item {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+
+    &.done {
+      text-decoration: line-through;
+    }
+  }
+
+  &__icon {
+    color: #BDBDBD;
+    font-size: 14px;
+  }
+}
