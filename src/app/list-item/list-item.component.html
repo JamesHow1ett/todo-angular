@@ -1,0 +1,14 @@
+<div class="todo-item">
+  <div class="todo-item__wrapper">
+    <span class="todo-item__checkbox" (click)="toogleCompleted()">
+      <input *ngIf="item.completed" type="checkbox" checked />
+      <input *ngIf="!item.completed" type="checkbox" />
+    </span>
+    <span class="todo-item__title">
+      {{ item.title }}
+    </span>
+    <span>
+      created at: {{ formattedDate(item.createdAt) }}
+    </span>
+  </div>
+</div>

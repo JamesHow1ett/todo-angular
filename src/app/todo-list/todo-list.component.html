@@ -1,0 +1,9 @@
+<div>
+  <ul>
+    <app-list-item
+      *ngFor="let todo of todos"
+      [item]="todo"
+      (toogle)="toggleCompleted($event)"
+    ></app-list-item>
+  </ul>
+</div>
