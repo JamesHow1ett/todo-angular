@@ -117,8 +117,8 @@
           "builder": "@netlify-builder/deploy:deploy",
           "options": {
             "outputPath": "dist/todo-app-angular",
-            "netlifyToken": "",
-            "siteId": ""
+            "netlifyToken": "D0XjRQPxq0q3B80ppVI2aQyoFyj_Ar_nLLywYtty30c",
+            "siteId": "5f58629b-9c2a-4029-aa29-b645865fd373"
           }
         }
       }
