@@ -1,5 +1,5 @@
 <div class="todo-item">
-  <div class="todo-item__wrapper" (click)="toogleCompleted()">
+  <div class="todo-item__wrapper" (click)="toogleCompleted($event)">
     <span class="todo-item__checkbox">
       <input *ngIf="item.completed" type="checkbox" checked />
       <input *ngIf="!item.completed" type="checkbox" />
@@ -11,7 +11,7 @@
       created at: {{ formattedDate(item.createdAt) }}
     </span>
   </div>
-  <div *ngIf="isCompletedFilter" class="todo-item__icon">
+  <div *ngIf="isCompletedFilter" class="todo-item__icon" (click)="handleDeleteItem($event)">
     <fa-icon [icon]="icon"></fa-icon>
   </div>
 </div>

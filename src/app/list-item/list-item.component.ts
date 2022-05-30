@@ -19,11 +19,21 @@ export class ListItemComponent {
 
   @Output() toogle = new EventEmitter<TodoItem>();
 
+  @Output() deleteItem = new EventEmitter<TodoItem>();
+
   icon = faTrashCan;
 
   formattedDate = formatDate;
 
-  toogleCompleted() {
+  toogleCompleted(event: any) {
+    event.stopPropagation();
+
     this.toogle.emit(this.item);
+  }
+
+  handleDeleteItem(event: any) {
+    event.stopPropagation();
+
+    this.deleteItem.emit(this.item);
   }
 }

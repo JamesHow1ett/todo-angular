@@ -16,7 +16,7 @@ export class ABtnComponent implements OnChanges {
 
   @Output() clickBtn = new EventEmitter<Event>();
 
-  computedClasses: Record<string, boolean> = {};
+  computedClasses: Array<string> = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     const { color, size } = changes;
@@ -26,10 +26,9 @@ export class ABtnComponent implements OnChanges {
     });
   }
 
-  static getClasses = ({ color, size }: Record<string, string>): Record<string, boolean> => ({
-    [`btn-color--${color}`]: true,
-    [`btn-size--${size}`]: true,
-  });
+  static getClasses = ({ color, size }: Record<string, string>): Array<string> => (
+    [`btn-color--${color}`, `btn-size--${size}`]
+  );
 
   handleClick(event: Event) {
     this.clickBtn.emit(event);

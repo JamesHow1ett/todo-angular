@@ -4,7 +4,6 @@ import {
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 import { TodoItem } from '../../types/TodoItem';
-import { FilterInput } from '../../types/Filter';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,25 +13,31 @@ import { FilterInput } from '../../types/Filter';
 export class TodoListComponent implements OnChanges {
   @Input() todos: Array<TodoItem> = [];
 
-  @Input() selectedFilter?: FilterInput;
+  @Input() isCompletedFilter: Boolean = false;
 
   @Output() toggle = new EventEmitter<TodoItem>();
 
+  @Output() deleteItem = new EventEmitter<TodoItem>();
+
   @Output() deleteAll = new EventEmitter();
 
-  isCompletedFilter = false;
-
   icon = faTrashCan;
+
+  rawTodos = [...this.todos];
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.rawTodos = [...changes['todos'].currentValue];
+  }
 
   toggleCompleted(item: TodoItem) {
     this.toggle.emit(item);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.isCompletedFilter = changes['selectedFilter']?.currentValue === 'completed';
-  }
-
   handleDeleteAll() {
     this.deleteAll.emit();
+  }
+
+  handleDeleteItem(item: TodoItem) {
+    this.deleteItem.emit(item);
   }
 }

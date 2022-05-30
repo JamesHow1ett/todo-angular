@@ -5,9 +5,10 @@
     <app-create-todo *ngIf="!isCompletedFilter" (addTodo)="addNewTodo($event)"></app-create-todo>
 
     <app-todo-list
-      [todos]="todos"
-      [selectedFilter]="selectedFilter"
+      [todos]="sortedTodos"
+      [isCompletedFilter]="isCompletedFilter"
       (toggle)="toggleCompleted($event)"
+      (deleteItem)="deleteItem($event)"
       (deleteAll)="deleteTodos()"
       ></app-todo-list>
   </div>
