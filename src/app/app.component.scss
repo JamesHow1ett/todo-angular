@@ -1,4 +1,37 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+}
+
 .todo-app {
   width: 600px;
-  margin: 0 auto;
+  flex: 1 1 80%;
+}
+
+.footer {
+  color: #A9A9A9;
+
+  &__sign {
+    font-weight: 500;
+  }
+
+  &__username {
+    font-weight: 700;
+    text-decoration: underline;
+
+    & > a:visited {
+      color: inherit;
+    }
+  }
+
+  &__link > a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

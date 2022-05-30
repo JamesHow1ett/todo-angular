@@ -1,4 +1,4 @@
-<div>
+<div class="app-wrapper">
   <div class="todo-app">
     <app-app-bar
       [selectedFilter]="selectedFilter"
@@ -15,5 +15,15 @@
       (deleteItem)="deleteItem($event)"
       (deleteAll)="deleteTodos()"
       ></app-todo-list>
+  </div>
+
+  <div class="footer">
+    <span class="footer__sign">
+      created by <span class="footer__username">
+        <a href="https://devchallenges.io/portfolio/JamesHow1ett" target="_blank">Oleksandr Skorokhod</a>
+      </span> - <span class="footer__link">
+        <a href="http://devchallenges.io" target="_blank">devChallenges.io</a>
+      </span>
+    </span>
   </div>
 </div>

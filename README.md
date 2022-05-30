@@ -6,8 +6,7 @@
 
 <div align="center">
   <h3>
-    <!-- FIXME -->
-    <a href="https://skorokhod-weather-app.web.app">
+    <a href="https://neon-belekoy-851b86.netlify.app/">
       Demo
     </a>
     <span> | </span>
@@ -36,12 +35,9 @@
 
 ## Overview
 
-![screenshot](https://raw.githubusercontent.com/JamesHow1ett/weather-app/main/.github/screenshots/fullscreenApp.JPG)
-![screenshot](https://raw.githubusercontent.com/JamesHow1ett/weather-app/main/.github/screenshots/fullscreenAppF.JPG)
-![screenshot](https://raw.githubusercontent.com/JamesHow1ett/weather-app/main/.github/screenshots/fullscreenAppSearch.JPG)
-![screenshot](https://raw.githubusercontent.com/JamesHow1ett/weather-app/main/.github/screenshots/mobileScreenApp.JPG)
-![screenshot](https://raw.githubusercontent.com/JamesHow1ett/weather-app/main/.github/screenshots/mobileScreenAppSecond.JPG)
-![screenshot](https://raw.githubusercontent.com/JamesHow1ett/weather-app/main/.github/screenshots/mobileScreenAppThird.JPG)
+![screenshot](./src/assets/Screenshot_1.PNG?raw=true)
+![screenshot](./src/assets/Screenshot_2.PNG?raw=true)
+![screenshot](./src/assets/Screenshot_3.PNG?raw=true)
 
 Hello, my name is Oleksandr Skorokhod. I'm a front-end developer. There is my first touch the Angular. There is a list of Angular features that I have used while developing:
 

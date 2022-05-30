@@ -1,6 +1,7 @@
 import {
   Component, EventEmitter, Input, Output,
 } from '@angular/core';
+import { faArrowUp, faArrowDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { FilterInput, Filter } from '../../types/Filter';
 import { SortDirection } from '../../types/Sort';
@@ -34,15 +35,25 @@ export class AppBarComponent {
 
   sortDesc?: SortDirection;
 
+  sortDescIcon?: IconDefinition;
+
   selectFilter(filter: FilterInput) {
     this.updateFilter.emit(filter);
   }
 
-  sortItems() {
+  sortItems(isActiveTab: boolean) {
+    if (!isActiveTab) {
+      return;
+    }
+
     this.updateSort();
 
     this.sortTodos.emit(this.sortDesc);
   }
+
+  private static computedIcon = (sortDesc: SortDirection): IconDefinition => (
+    sortDesc === 'asc' ? faArrowUp : faArrowDown
+  );
 
   private updateSort() {
     if (this.sortDesc) {
@@ -50,5 +61,7 @@ export class AppBarComponent {
     } else {
       this.sortDesc = 'desc';
     }
+
+    this.sortDescIcon = AppBarComponent.computedIcon(this.sortDesc);
   }
 }

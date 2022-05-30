@@ -11,7 +11,9 @@
       }"
     >
       <span (click)="selectFilter(filter.value)">{{ filter.title }}</span>
-      <span (click)="sortItems()">Sort</span>
+      <span (click)="sortItems(selectedFilter === filter.value)">Sort
+        <fa-icon *ngIf="sortDescIcon && selectedFilter === filter.value" [icon]="sortDescIcon"></fa-icon>
+      </span>
     </div>
   </div>
 </div>
