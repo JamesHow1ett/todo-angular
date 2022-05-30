@@ -1,3 +1,1 @@
-export const SET_TODOS = 'SET_TODOS';
-
-export const GET_TODOS = 'GET_TODOS';
+export const TODOS_KEY = 'TODOS_KEY';

@@ -1,15 +1,19 @@
 <div class="todo-item">
   <div class="todo-item__wrapper" (click)="toogleCompleted($event)">
-    <span class="todo-item__checkbox">
-      <input *ngIf="item.completed" type="checkbox" checked />
-      <input *ngIf="!item.completed" type="checkbox" />
-    </span>
-    <span class="todo-item__title" [class]="{ done: item.completed }">
-      {{ item.title }}
-    </span>
-    <span>
-      created at: {{ formattedDate(item.createdAt) }}
-    </span>
+    <div>
+      <span class="todo-item__checkbox">
+        <input *ngIf="item.completed" type="checkbox" checked />
+        <input *ngIf="!item.completed" type="checkbox" />
+      </span>
+      <span class="todo-item__title" [class]="{ done: item.completed }">
+        {{ item.title }}
+      </span>
+    </div>
+    <div>
+      <span>
+        created at: {{ formattedDate(item.createdAt) }}
+      </span>
+    </div>
   </div>
   <div *ngIf="isCompletedFilter" class="todo-item__icon" (click)="handleDeleteItem($event)">
     <fa-icon [icon]="icon"></fa-icon>

@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 
 import { FilterInput, Filter } from '../../types/Filter';
+import { SortDirection } from '../../types/Sort';
 
 @Component({
   selector: 'app-app-bar',
@@ -13,6 +14,8 @@ export class AppBarComponent {
   @Input() selectedFilter: FilterInput = 'all';
 
   @Output() updateFilter = new EventEmitter<FilterInput>();
+
+  @Output() sortTodos = new EventEmitter<SortDirection>();
 
   filters: Array<Filter> = [
     {
@@ -29,7 +32,23 @@ export class AppBarComponent {
     },
   ];
 
+  sortDesc?: SortDirection;
+
   selectFilter(filter: FilterInput) {
     this.updateFilter.emit(filter);
+  }
+
+  sortItems() {
+    this.updateSort();
+
+    this.sortTodos.emit(this.sortDesc);
+  }
+
+  private updateSort() {
+    if (this.sortDesc) {
+      this.sortDesc = this.sortDesc === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortDesc = 'desc';
+    }
   }
 }

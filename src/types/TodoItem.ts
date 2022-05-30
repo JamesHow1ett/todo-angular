@@ -8,7 +8,7 @@ export interface TodoItem {
   id: string
   title: string
   completed: boolean
-  createdAt?: number
+  createdAt: number
   priority?: PriorityStatus
 }
 
