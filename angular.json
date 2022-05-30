@@ -112,6 +112,14 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/todo-app-angular",
+            "netlifyToken": "",
+            "siteId": ""
+          }
         }
       }
     }

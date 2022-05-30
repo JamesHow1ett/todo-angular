@@ -5,12 +5,13 @@
   <div class="filters">
     <div
       *ngFor="let filter of filters"
+      class="filters__item"
       [class]="{
         active: selectedFilter === filter.value
       }"
-      (click)="selectFilter(filter.value)"
     >
-      {{ filter.title }}
+      <span (click)="selectFilter(filter.value)">{{ filter.title }}</span>
+      <span (click)="sortItems()">Sort</span>
     </div>
   </div>
 </div>

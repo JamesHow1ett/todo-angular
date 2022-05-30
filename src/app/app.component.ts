@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import StoreService from '../utils/storage';
 
 import { TodoItem, NewTodo } from '../types/TodoItem';
 import { FilterInput } from '../types/Filter';
+import { SortDirection } from '../types/Sort';
 
 const SAFE_ID_PREFIX = 'todo-item-id--';
 
@@ -12,37 +13,20 @@ const SAFE_ID_PREFIX = 'todo-item-id--';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   todoCounter = 0;
 
   todos: Array<TodoItem> = [];
 
-  sortedTodos: Array<TodoItem> = [];
+  filteredTodos: Array<TodoItem> = [];
 
   selectedFilter: FilterInput = 'all';
 
   isCompletedFilter = false;
 
-  private incrementId() {
-    const step = () => {
-      const result = this.todoCounter + 1;
-      this.todoCounter += 1;
-      return result;
-    };
-    return `${SAFE_ID_PREFIX}${step()}`;
-  }
-
-  private sortTodos(filter: FilterInput) {
-    switch (filter) {
-      case 'active':
-        this.sortedTodos = [...this.todos].filter((todo) => !todo.completed);
-        break;
-      case 'completed':
-        this.sortedTodos = [...this.todos].filter((todo) => todo.completed);
-        break;
-      default:
-        this.sortedTodos = [...this.todos];
-    }
+  ngOnInit(): void {
+    this.todos = StoreService.getTodos() ?? [];
+    this.filteredTodos = StoreService.getTodos() ?? [];
   }
 
   toggleCompleted(item: TodoItem) {
@@ -55,7 +39,7 @@ export class AppComponent {
 
     StoreService.updateTodos(updatedTodos);
     this.todos = updatedTodos;
-    this.sortTodos(this.selectedFilter);
+    this.filterTodos(this.selectedFilter);
   }
 
   addNewTodo(item: NewTodo) {
@@ -63,20 +47,21 @@ export class AppComponent {
 
     StoreService.updateTodos(updatedTodos);
     this.todos = updatedTodos;
-    this.sortedTodos = updatedTodos;
+    this.filteredTodos = updatedTodos;
   }
 
   updateFilter(filter: FilterInput): void {
     this.selectedFilter = filter;
     this.isCompletedFilter = filter === 'completed';
 
-    this.sortTodos(filter);
+    this.filterTodos(filter);
   }
 
   deleteTodos() {
     this.todos = [];
     this.todoCounter = 0;
-    this.sortedTodos = [];
+    this.filteredTodos = [];
+    StoreService.removeTodos();
   }
 
   deleteItem(item: TodoItem) {
@@ -84,6 +69,50 @@ export class AppComponent {
 
     StoreService.updateTodos(updatedTodos);
     this.todos = updatedTodos;
-    this.sortTodos(this.selectedFilter);
+    this.filterTodos(this.selectedFilter);
+  }
+
+  sortTodos(sortDesc: SortDirection): void {
+    let updatedTodos: Array<TodoItem>;
+
+    switch (sortDesc) {
+      case 'asc':
+        updatedTodos = [...this.todos].sort((a, b) => a.createdAt - b.createdAt);
+
+        break;
+      case 'desc':
+        updatedTodos = [...this.todos].sort((a, b) => b.createdAt - a.createdAt);
+        break;
+      default:
+        updatedTodos = [...this.todos];
+        break;
+    }
+
+    StoreService.updateTodos(updatedTodos);
+    this.todos = updatedTodos;
+    this.filterTodos(this.selectedFilter);
+  }
+
+  private incrementId() {
+    const step = () => {
+      const result = this.todoCounter + 1;
+      this.todoCounter += 1;
+      return result;
+    };
+    return `${SAFE_ID_PREFIX}${step()}`;
+  }
+
+  private filterTodos(filter: FilterInput) {
+    switch (filter) {
+      case 'active':
+        this.filteredTodos = [...this.todos].filter((todo) => !todo.completed);
+        break;
+      case 'completed':
+        this.filteredTodos = [...this.todos].filter((todo) => todo.completed);
+        break;
+      default:
+        this.filteredTodos = [...this.todos];
+        break;
+    }
   }
 }

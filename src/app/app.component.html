@@ -1,11 +1,15 @@
 <div>
   <div class="todo-app">
-    <app-app-bar [selectedFilter]="selectedFilter" (updateFilter)="updateFilter($event)"></app-app-bar>
+    <app-app-bar
+      [selectedFilter]="selectedFilter"
+      (updateFilter)="updateFilter($event)"
+      (sortTodos)="sortTodos($event)"
+      ></app-app-bar>
 
     <app-create-todo *ngIf="!isCompletedFilter" (addTodo)="addNewTodo($event)"></app-create-todo>
 
     <app-todo-list
-      [todos]="sortedTodos"
+      [todos]="filteredTodos"
       [isCompletedFilter]="isCompletedFilter"
       (toggle)="toggleCompleted($event)"
       (deleteItem)="deleteItem($event)"

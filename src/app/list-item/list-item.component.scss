@@ -19,4 +19,14 @@
     color: #BDBDBD;
     font-size: 14px;
   }
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+
+    >div {
+      flex: 1 1 60%;
+    }
+  }
 }
